@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Image from "next/image";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import { getFeaturedContent } from "@/lib/content";
@@ -20,8 +20,20 @@ export default function BreedSpotlight() {
         </h2>
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-amber-100">
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-amber-100 to-amber-50 rounded-xl flex items-center justify-center text-6xl aspect-square">
-              🐱
+            <div className="rounded-xl overflow-hidden relative aspect-square bg-stone-100">
+              {fm.image ? (
+                <Image
+                  src={fm.image}
+                  alt={fm.breed_name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-amber-100 to-amber-50 flex items-center justify-center text-6xl">
+                  🐱
+                </div>
+              )}
             </div>
             <div>
               <Badge variant="amber" className="mb-3">

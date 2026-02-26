@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Badge from "@/components/ui/Badge";
 import type { BreedFrontmatter } from "@/lib/types";
@@ -12,8 +13,20 @@ export default function BreedCard({ frontmatter: fm }: BreedCardProps) {
       href={`/breeds/${fm.slug}`}
       className="group block rounded-xl border border-stone-200 bg-white overflow-hidden hover:shadow-lg transition-shadow"
     >
-      <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-50 flex items-center justify-center text-5xl">
-        🐱
+      <div className="aspect-video bg-stone-100 overflow-hidden relative">
+        {fm.image ? (
+          <Image
+            src={fm.image}
+            alt={fm.breed_name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-amber-100 to-amber-50 flex items-center justify-center text-5xl">
+            🐱
+          </div>
+        )}
       </div>
       <div className="p-5">
         <h3 className="font-semibold text-lg text-stone-900 group-hover:text-amber-700 transition-colors mb-1">
